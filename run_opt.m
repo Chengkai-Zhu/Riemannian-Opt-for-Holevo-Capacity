@@ -1,3 +1,6 @@
+%% Required 
+%Manopt: https://www.manopt.org/
+
 function h = run_opt(K)
 % Input: Kraus operator {K_i} for a quantum channel
 % Output: lower bound on chi(N) optimized by Riemannian opt
