@@ -21,10 +21,7 @@ else
     NK(:,2) = cellfun(@ctranspose,NK(:,2),'UniformOutput',false);
 end
 Nrho = cell2mat(NK(:,1).')*kron(speye(size(NK,1)), rho) * cell2mat(NK(:,2)); % apply kraus on rho
-% Nrho = 0;
-% for i=1:length(NK)
-%     Nrho = Nrho + NK{i}*rho*NK{i}';
-% end
+
 % compute Holevo cost function
 f = quantum_entr(Nrho);
 for j=1:num_p
