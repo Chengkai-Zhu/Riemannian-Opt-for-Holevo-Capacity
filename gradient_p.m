@@ -6,6 +6,24 @@ function grad = gradient_p(X, K, num_p)
 % Output:
 % Euclidean gradient of psi_i
 
+% linear combination of N and fully depolarizing channel if Kraus rank < d
+delta = 1e-9;
+sK = size(K);
+ss = size(K{1});
+d = ss(1); % dimension of the input state
+Kdepo = chanconv(DepolarizingChannel(d, 0)*eye(d^2),'choi','kraus',[d d]);
+if length(K)<d % map is not full rank
+    for i = 1:length(K)
+        K{i} = K{i} * sqrt(1-delta);
+    end
+    for j = 1:length(Kdepo)
+        Kdepo{j} = Kdepo{j} * sqrt(delta);
+    end
+    K = [K;Kdepo]; % new Kraus with full-rank output
+else
+end
+
+% get probability and input state
 p = X.p;
 psi = X.psi;
 % sum of pi psi_i
