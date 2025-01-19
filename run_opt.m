@@ -1,6 +1,9 @@
 function h = run_opt(K)
+% Input: Kraus operator {K_i} for a quantum channel
+% Output: lower bound on chi(N) optimized by Riemannian opt
+
 s = size(K{1});
-d = s(1);
+d = s(1); % dimension of the input
 
 %% optimization
 num_p = d^2; % number of pure state
@@ -18,7 +21,7 @@ options.maxiter = 100000;
 [Xopt, f, info] = barzilaiborwein(problem, [], options);
 % [Xopt, f, info] = trustregions(problem, [], options);
 
-h = -f;
+h = -f; % optimized Holevo capacity
 end
 
 
