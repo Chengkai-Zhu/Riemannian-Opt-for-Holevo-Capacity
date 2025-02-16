@@ -4,7 +4,7 @@ function grad = gradient_p(X, K, num_p)
 % K: A cell array containing the Kraus operators {K_i}_{i=1}^k
 % num_p: The number of p_i
 % Output:
-% Euclidean gradient of psi_i
+% Euclidean gradient of p
 
 % linear combination of N and fully depolarizing channel if Kraus rank < d
 delta = 1e-9;
