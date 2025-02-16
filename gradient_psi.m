@@ -4,14 +4,14 @@ function grad = gradient_psi(X, K, num_p)
 % K: A cell array containing the Kraus operators {K_i}_{i=1}^k
 % num_p: The number of p_i
 % Output:
-% Euclidean gradient of pi
+% Euclidean gradient of psi_i
 
 % linear combination of N and fully depolarizing channel if Kraus rank < d
 delta = 1e-9;
 sK = size(K);
 ss = size(K{1});
 d = ss(1); % dimension of the input state
-Kdepo = chanconv(DepolarizingChannel(d, 0)*eye(d^2),'choi','kraus',[d d]);
+Kdepo = chanconv(eye(d^2)/d,'choi','kraus',[d d]);
 if length(K)<d % map is not full rank
     for i = 1:length(K)
         K{i} = K{i} * sqrt(1-delta);
