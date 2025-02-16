@@ -11,7 +11,7 @@ delta = 1e-9;
 sK = size(K);
 ss = size(K{1});
 d = ss(1); % dimension of the input state
-Kdepo = chanconv(DepolarizingChannel(d, 0)*eye(d^2),'choi','kraus',[d d]);
+Kdepo = chanconv(eye(d^2)/d,'choi','kraus',[d d]);
 if length(K)<d % map is not full rank
     for i = 1:length(K)
         K{i} = K{i} * sqrt(1-delta);
